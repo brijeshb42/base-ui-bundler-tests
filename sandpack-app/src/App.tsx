@@ -1,4 +1,93 @@
-/* Base styles */
+import { Sandpack } from '@codesandbox/sandpack-react';
+
+const files = {
+  '/App.tsx': `import './App.css';
+import * as React from 'react';
+import { Menu } from '@base-ui/react/menu';
+import { Dialog } from '@base-ui/react/dialog';
+import { Switch } from '@base-ui/react/switch';
+
+export function App() {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  return (
+    <div className="app-container">
+      <h1>Base UI Demo</h1>
+      <p>Testing headless components from base-ui.com</p>
+
+      <section className="demo-section">
+        <h2>Menu</h2>
+        <Menu.Root>
+          <Menu.Trigger className="menu-trigger">Open Menu</Menu.Trigger>
+          <Menu.Portal>
+            <Menu.Positioner className="menu-positioner">
+              <Menu.Popup className="menu-popup">
+                <Menu.Item className="menu-item">New File</Menu.Item>
+                <Menu.Item className="menu-item">Open File</Menu.Item>
+                <Menu.Item className="menu-item">Save</Menu.Item>
+                <Menu.Separator className="menu-separator" />
+                <Menu.Item className="menu-item">Settings</Menu.Item>
+              </Menu.Popup>
+            </Menu.Positioner>
+          </Menu.Portal>
+        </Menu.Root>
+      </section>
+
+      <section className="demo-section">
+        <h2>Switch</h2>
+        <div className="switch-demo">
+          <Switch.Root className="switch-root" defaultChecked>
+            <Switch.Thumb className="switch-thumb" />
+          </Switch.Root>
+          <span>Enable notifications</span>
+        </div>
+        <div className="switch-demo">
+          <Switch.Root className="switch-root">
+            <Switch.Thumb className="switch-thumb" />
+          </Switch.Root>
+          <span>Dark mode</span>
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <h2>Dialog</h2>
+        <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
+          <Dialog.Trigger className="dialog-trigger">Open Dialog</Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Backdrop className="dialog-backdrop" />
+            <Dialog.Popup className="dialog-popup">
+              <Dialog.Title className="dialog-title">Welcome!</Dialog.Title>
+              <Dialog.Description className="dialog-description">
+                This is a Base UI Dialog component. It's fully accessible and
+                customizable with your own styles.
+              </Dialog.Description>
+              <div className="dialog-actions">
+                <Dialog.Close className="dialog-close">Close</Dialog.Close>
+                <button className="dialog-confirm" onClick={() => setDialogOpen(false)}>
+                  Confirm
+                </button>
+              </div>
+            </Dialog.Popup>
+          </Dialog.Portal>
+        </Dialog.Root>
+      </section>
+    </div>
+  );
+}
+`,
+  '/Material.tsx': `import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
+export function App() {
+  return (
+    <Stack direction="row" spacing={2}>
+      <Button>Primary</Button>
+      <Button disabled>Disabled</Button>
+      <Button href="#text-buttons">Link</Button>
+    </Stack>
+  );
+}`,
+  '/App.css': `/* Base styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -272,3 +361,47 @@ h2 {
 .dialog-confirm:hover {
   background: #2563eb;
 }
+`,
+  '/index.tsx': `import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
+import { App } from './Material';
+
+let container = document.getElementById("root")!;
+let root = createRoot(container)
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+`,
+};
+
+function App() {
+  return (
+    <div style={{ height: '100vh', width: '100vw' }}>
+      <Sandpack
+        template="react-ts"
+        theme="dark"
+        options={{
+          showNavigator: true,
+          showTabs: true,
+          editorHeight: '100vh',
+          bundlerTimeOut: 500000,
+        }}
+        customSetup={{
+          dependencies: {
+            '@base-ui/react': 'latest',
+            '@emotion/react': 'latest',
+            '@emotion/styled': 'latest',
+            '@mui/material': 'latest',
+            react: '19.2.4',
+            'react-dom': '19.2.4',
+          },
+        }}
+        files={files}
+      />
+    </div>
+  );
+}
+
+export default App;

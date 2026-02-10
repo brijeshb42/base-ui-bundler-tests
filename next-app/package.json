@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "next": "latest"
   },
   "devDependencies": {

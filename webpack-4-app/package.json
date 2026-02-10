@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -21,7 +21,9 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "babel-loader": "^8",
+    "css-loader": "^5",
     "html-webpack-plugin": "^4",
+    "mini-css-extract-plugin": "^1",
     "rimraf": "latest",
     "webpack": "^4.37",
     "webpack-cli": "^4.7",

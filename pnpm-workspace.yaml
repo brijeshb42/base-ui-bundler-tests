@@ -11,7 +11,9 @@ packages:
   - vite-swc-app
   - webpack-4-app
   - webpack-5-app
-  - scripts
+  - sandpack-app
 
 catalog:
   '@base-ui/react': 1.1.0
+  react: 19.2.4
+  react-dom: 19.2.4

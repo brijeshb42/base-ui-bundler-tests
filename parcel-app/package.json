@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "parcel index.html",
+    "start": "pnpm dlx serve dist -L -p 3001",
     "build": "parcel build index.html",
     "prebuild": "rimraf dist",
     "analyze-bundle": "node --experimental-strip-types --disable-warning=ExperimentalWarning ../scripts/analyze-bundle.ts --name Parcel --bundle \"./dist/index.*.js\""
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@types/react": "latest",
